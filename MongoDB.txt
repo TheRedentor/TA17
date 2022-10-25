@@ -1,0 +1,67 @@
+use ejercicio1;
+db.createCollection('fabricantes');
+db.createCollection('articulos');
+db.fabricantes.insert({codigo:1, nombre:'Fabricante 1'});
+db.fabricantes.insertMany([{codigo:2, nombre:'Fabricante 2'}, {codigo:3, nombre:'Fabricante 3'}]);
+db.articulos.insertMany([{codigo:1, nombre:'Artículo 1', precio:3, fabricante:{codigo:1, nombre:'Fabricante 1'}}, {codigo:2, nombre:'Artículo 2', precio:15, fabricante:{codigo:2, nombre:'Fabricante 2'}}, {codigo:3, nombre:'Artículo 3', precio:7, fabricante:{codigo:3, nombre:'Fabricante 3'}}]);
+
+use ejercicio2;
+db.createCollection('departamentos');
+db.createCollection('empleados');
+db.departamentos.insertMany([{codigo:1, nombre:'Departamento 1', presupuesto:10000}, {codigo:2, nombre:'Departamento 2', presupuesto:25000}, {codigo:3, nombre:'Departamento 3', presupuesto:30000}]);
+db.empleados.insertMany([{dni:'39571829', nombre:'Juan', apellidos:'Carrillo Mota', departamento:{codigo:1, nombre:'Departamento 1', presupuesto:10000}}, {dni:46382916, nombre:'Pedro', apellidos:'Ramos Montero', departamento:{codigo:2, nombre:'Departamento 2', presupuesto:25000}}, {dni:35627186, nombre:'Oscar', apellidos:'Nieto Barón', departamento:{codigo:3, nombre:'Departamento 3', presupuesto:30000}}]);
+
+use ejercicio3;
+db.createCollection('almacenes');
+db.createCollection('cajas');
+db.almacenes.insertMany([{codigo:1, lugar:'Sector 1', capacidad: 500}, {codigo:2, lugar:'Sector 2', capacidad: 300}, {codigo:3, lugar:'Sector 3', capacidad: 600}]);
+db.cajas.insertMany([{numreferencia:11111, contenido:'Tuercas', valor:100, almacen:{codigo:1, lugar:'Sector 1', capacidad:300}}, {numreferencia:22222, contenido:'Clavos', valor:120, almacen:{codigo:2, lugar:'Sector 2', capacidad:600}}, {numreferencia:33333, contenido:'Barras de aluminio', valor:500, almacen:{codigo:3, lugar:'Sector 3', capacidad:600}}]);
+
+use ejercicio4;
+db.createCollection('peliculas');
+db.createCollection('salas');
+db.peliculas.insertMany([{codigo:1, nombre:'Bullet Train', calificacionedad:12}, {codigo:2, nombre:'Black Phone', calificacionedad:16}, {codigo:3, nombre:'Morbius', calificacionedad:12}]);
+db.salas.insertMany([{codigo:1, nombre:'Sala 1', pelicula:{codigo:1, nombre:'Bullet Train', calificacionedad:12}}, {codigo:2, nombre:'Sala 2', pelicula:{codigo:2, nombre:'Black Phone', calificacionedad:16}}, {codigo:3, nombre:'Sala 3', pelicula:{codigo:3, nombre:'Morbius', calificacionedad:12}}]);
+
+use ejercicio5;
+db.createCollection('despachos');
+db.createCollection('directores');
+db.despachos.insertMany([{numero:1, capacidad:10}, {numero:2, capacidad:5}, {numero:3, capacidad:15}]);
+db.directores.insertMany([{dni:'34268295', nomapels:'Jose Marín Gutiérrez', dnijefe:{dni:'65471934', nomapels:'Pepe Viyuela', despacho:{numero:1, capacidad:10}}, despacho:{numero:1, capacidad:10}}, {dni:'65471934', nomapels:'Pepe Viyuela', despacho:{numero:1, capacidad:10}}, {dni:'34263593', nomapels:'Juanjo Gómez', dnijefe:{dni:'65471934', nomapels:'Pepe Viyuela', despacho:{numero:1, capacidad:10}}, despacho:{numero:1, capacidad:10}}]);
+
+use ejercicio6;
+db.createCollection('piezas');
+db.createCollection('proveedores');
+db.createCollection('suministra');
+db.piezas.insertMany([{codigo:1, nombre:'Tuerca'}, {codigo:2, nombre:'Tornillo'}, {codigo:3, nombre:'Arandela'}]);
+db.proveedores.insertMany([{id:1111, nombre:'Proveedor 1'}, {id:2222, nombre:'Proveedor 2'}, {id:3333, nombre:'Proveedor 3'}]);
+db.suministra.insertMany([{codigopieza:{codigo:1, nombre:'Tuerca'}, idproveedor:{id:1111, nombre:'Proveedor 1'}, precio:13}, {codigopieza:{codigo:2, nombre:'Tornillo'}, idproveedor:{id:2222, nombre:'Proveedor 2'}, precio:10}, {codigopieza:{codigo:3, nombre:'Arandela'}, idproveedor:{id:3333, nombre:'Proveedor 3'}, precio:7}]);
+
+use ejercicio7;
+db.createCollection('productos');
+db.createCollection('cajeros');
+db.createCollection('maquinas_registradoras');
+db.createCollection('venta');
+db.productos.insertMany([{codigo:1, nombre:'Pipas', precio:1}, {codigo:2, nombre:'Cheetos', precio:2}, {codigo:3, nombre:'Fantasmikos', precio:3}]);
+db.cajeros.insertMany([{codigo:1, nomapels:'Maria Piña Carrero'}, {codigo:2, nomapels:'Jorge Romero Fernández'}, {codigo:3, nomapels:'Agustín Porras Cantó'}]);
+db.maquinas_registradoras.insertMany([{codigo:1, piso:3}, {codigo:2, piso:4}, {codigo:3, piso:5}]);
+db.venta.insertMany([{cajero:{codigo:1, nomapels:'Maria Piña Carrero'}, maquina:{codigo:1, piso:3}, producto:{codigo:1, nombre:'Pipas', precio:1}}, {cajero:{codigo:2, nomapels:'Jorge Romero Fernández'}, maquina:{codigo:2, piso:4}, producto:{codigo:3, nombre:'Fantasmikos', precio:3}}]);
+
+use ejercicio8;
+db.createCollection('facultad');
+db.createCollection('investigadores');
+db.createCollection('equipos');
+db.createCollection('reserva');
+db.facultad.insertMany([{codigo:1, nombre:'Facultad 1'}, {codigo:2, nombre:'Facultad 2'}, {codigo:3, nombre:'Facultad 3'}]);
+db.investigadores.insertMany([{dni:'24367129', nomapels:'Marta Cañardo Lolete', facultad:{codigo:1, nombre:'Facultad 1'}}, {dni:'43527586', nomapels:'Pedro Romero Sánchez', facultad:{codigo:2, nombre:'Facultad 2'}}, {dni:'45649910', nomapels:'Luís Portón Caña', facultad:{codigo:3, nombre:'Facultad 3'}}]);
+db.equipos.insertMany([{numserie:'1111', nombre:'Equipo 1', facultad:{codigo:1, nombre:'Facultad 1'}}, {numserie:'2222', nombre:'Equipo 2', facultad:{codigo:2, nombre:'Facultad 2'}}, {numserie:'3333', nombre:'Equipo 3', facultad:{codigo:3, nombre:'Facultad 3'}}]);
+db.reserva.insertOne({dni:{dni:'24367129', nomapels:'Marta Cañardo Lolete', facultad:{codigo:1, nombre:'Facultad 1'}}, numserie:{numserie:'1111', nombre:'Equipo 1', facultad:{codigo:1, nombre:'Facultad 1'}}, comienzo:'2022-04-22 10:34:23', fin:'2023-04-22 10:34:23'});
+
+use ejercicio9;
+db.createCollection('cientificos');
+db.createCollection('proyecto');
+db.createCollection('asignado_a');
+db.cientificos.insertMany([{dni:'56748192', nomapels:'Mario Tomillo Pelón'}, {dni:'46378192', nomapels:'Pablo Chucho Carrillo'}, {dni:'73451295', nomapels:'Helena Tristancho Larido'}]);
+db.proyecto.insertMany([{id:'1111', nombre:'Proyecto 1', horas:50}, {id:'2222', nombre:'Proyecto 2', horas:25}, {id:'3333', nombre:'Proyecto 3', horas:30}]);
+db.asignado_a.insertMany([{cientifico:{dni:'56748192', nomapels:'Mario Tomillo Pelón'}, proyecto:{id:'1111', nombre:'Proyecto 1', horas:50}}, {cientifico:{dni:'46378192', nomapels:'Pablo Chucho Carrillo'}, proyecto:{id:'2222', nombre:'Proyecto 2', horas:25}}, {cientifico:{dni:'73451295', nomapels:'Helena Tristancho Larido'}, proyecto:{id:'3333', nombre:'Proyecto 3', horas:30}}]);
+
